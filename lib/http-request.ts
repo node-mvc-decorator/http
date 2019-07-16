@@ -1,9 +1,9 @@
 
 import {IncomingHttpHeaders, IncomingMessage} from "http";
-import {HttpRequest as HttpRequest0} from "@node-mvc-decorator/core";
+import {CoreRequest} from "@node-mvc-decorator/core";
 import * as url from "url";
 
-class ExpressRequest extends HttpRequest0<IncomingMessage> {
+class HttpRequest extends CoreRequest<IncomingMessage> {
     get headers(): IncomingHttpHeaders {
         return this.request.headers;
     }
@@ -20,7 +20,7 @@ class ExpressRequest extends HttpRequest0<IncomingMessage> {
                     .on("end", () => resovle(Buffer.concat(body).toString()))
                     .on("error", () => reject('rrrrrrrrrrrr'));
             });
-        })()
+        })();
     }
 
     get params(): any {
@@ -33,4 +33,4 @@ class ExpressRequest extends HttpRequest0<IncomingMessage> {
 
 }
 
-export {ExpressRequest};
+export {HttpRequest};
